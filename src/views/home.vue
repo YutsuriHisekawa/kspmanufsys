@@ -2,11 +2,14 @@
 // Import modul dan komponen yang diperlukan
 import Swal from "sweetalert2";
 import { onMounted, ref, nextTick } from "vue";
-import $ from "jquery";
-import "datatables.net";
+import DataTable from "datatables.net-vue3";
+import DataTablesCore from "datatables.net";
+import "datatables.net-select";
+import "datatables.net-responsive";
 import sidebar from "@/layouts/sidebar.vue";
 import { useRouter } from "vue-router";
 
+DataTable.use(DataTablesCore);
 // Deklarasi variabel reaktif
 const users = ref([]);
 const router = useRouter();
@@ -18,7 +21,9 @@ onMounted(async () => {
     const data = await response.json();
     users.value = data.users;
     await nextTick();
-    $("#datatable").DataTable();
+
+    const datatable = $("#datatable").DataTable();
+    datatable.clear().rows.add(data.users).draw(); // Hapus data lama dan tambahkan data baru
   } catch (error) {
     console.error("Error fetching or initializing DataTable:", error);
   }
@@ -66,6 +71,7 @@ const editUser = (userId) => {
       >
         <router-link to="/add">Add Data</router-link>
       </button>
+
       <table id="datatable" class="table-auto w-full text-black">
         <thead>
           <tr>
@@ -144,5 +150,13 @@ const editUser = (userId) => {
   #datatable td:nth-child(7) {
     display: none;
   }
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
 }
 </style>
