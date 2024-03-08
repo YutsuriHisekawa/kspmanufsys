@@ -1,5 +1,6 @@
 <script setup>
 // Import modul dan komponen yang diperlukan
+import Swal from "sweetalert2";
 import { onMounted, ref, nextTick } from "vue";
 import $ from "jquery";
 import "datatables.net";
@@ -26,13 +27,23 @@ onMounted(async () => {
 // Fungsi untuk menghapus pengguna berdasarkan ID
 const deleteUser = async (userId) => {
   try {
-    const response = await fetch(`https://dummyjson.com/users/${userId}`, {
-      method: "DELETE",
+    const confirmResult = await Swal.fire({
+      title: "Apakah anda yakin ingin menghapus data?",
+      showCancelButton: true,
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      icon: "question",
     });
-    if (response.ok) {
-      users.value = users.value.filter((user) => user.id !== userId);
-    } else {
-      console.error("Failed to delete user.");
+
+    if (confirmResult.isConfirmed) {
+      const response = await fetch(`https://dummyjson.com/users/${userId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        users.value = users.value.filter((user) => user.id !== userId);
+      } else {
+        console.error("Failed to delete user.");
+      }
     }
   } catch (error) {
     console.error("Error deleting user:", error);
