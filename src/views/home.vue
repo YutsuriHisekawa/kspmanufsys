@@ -1,13 +1,16 @@
 <script setup>
+// Import modul dan komponen yang diperlukan
 import { onMounted, ref, nextTick } from "vue";
 import $ from "jquery";
 import "datatables.net";
 import sidebar from "@/layouts/sidebar.vue";
 import { useRouter } from "vue-router";
 
+// Deklarasi variabel reaktif
 const users = ref([]);
 const router = useRouter();
 
+// Kode yang dijalankan saat komponen dimounted
 onMounted(async () => {
   try {
     const response = await fetch("https://dummyjson.com/users");
@@ -20,6 +23,7 @@ onMounted(async () => {
   }
 });
 
+// Fungsi untuk menghapus pengguna berdasarkan ID
 const deleteUser = async (userId) => {
   try {
     const response = await fetch(`https://dummyjson.com/users/${userId}`, {
@@ -35,6 +39,7 @@ const deleteUser = async (userId) => {
   }
 };
 
+// Fungsi untuk mengarahkan ke halaman edit pengguna
 const editUser = (userId) => {
   router.push({ path: `/edit/${userId}` });
 };
