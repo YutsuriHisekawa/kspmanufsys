@@ -72,79 +72,100 @@ onMounted(fetchUser);
 </script>
 <template>
   <sidebar></sidebar>
-  <div class="p-4 sm:ml-64 bg-white pt-10">
-    <div class="p-4 bg-white rounded-lg mt-14 h-full space-y-10">
-      <div>
-        <h2>Edit User</h2>
-        <form @submit.prevent="saveChanges">
-          <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" v-model="editedUser.firstName" />
-          <br />
-
-          <label for="lastName">Last Name:</label>
-          <input type="text" id="lastName" v-model="editedUser.lastName" />
-          <br />
-
-          <label for="maidenName">Maiden Name:</label>
-          <input type="text" id="maidenName" v-model="editedUser.maidenName" />
-          <br />
-
-          <label for="age">Age:</label>
-          <input type="number" id="age" v-model="editedUser.age" />
-          <br />
-
-          <label for="gender">Gender:</label>
-          <select id="gender" v-model="editedUser.gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <br />
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" v-model="editedUser.email" />
-          <br />
-
-          <label for="phone">Phone:</label>
-          <input type="text" id="phone" v-model="editedUser.phone" />
-          <br />
-
-          <label for="username">Username:</label>
-          <input type="text" id="username" v-model="editedUser.username" />
-          <br />
-
-          <label for="password">Password:</label>
-          <input type="password" id="password" v-model="editedUser.password" />
-          <br />
-
-          <label for="birthDate">Date of Birth:</label>
-          <input type="date" id="birthDate" v-model="editedUser.birthDate" />
-          <br />
-
-          <label for="image">Image URL:</label>
-          <input type="text" id="image" v-model="editedUser.image" />
-          <br />
-
-          <label for="bloodGroup">Blood Group:</label>
-          <input type="text" id="bloodGroup" v-model="editedUser.bloodGroup" />
-          <br />
-
-          <label for="height">Height:</label>
-          <input type="number" id="height" v-model="editedUser.height" />
-          <br />
-
-          <label for="weight">Weight:</label>
-          <input type="number" id="weight" v-model="editedUser.weight" />
-          <br />
-
-          <label for="eyeColor">Eye Color:</label>
-          <input type="text" id="eyeColor" v-model="editedUser.eyeColor" />
-          <br />
-
+  <div class="p-7 lg:ml-64 pt-12 bg-blue-50">
+    <h1 class="text-3xl font-bold mt-14 ml-3">Edit User</h1>
+    <div class="p-3 bg-white rounded-md mt-6 h-full space-y-10">
+      <form @submit.prevent="saveChanges" class="space-y-4 p-6 bg-white">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="flex flex-row justify-between">
+            <label for="firstName" class="font-semibold w-32">First Name:</label>
+            <input type="text" id="firstName" v-model="editedUser.firstName" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="lastName" class="font-semibold w-32">Last Name:</label>
+            <input type="text" id="lastName" v-model="editedUser.lastName" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="maidenName" class="font-semibold w-32">Maiden Name:</label>
+            <input type="text" id="maidenName" v-model="editedUser.maidenName" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="age" class="font-semibold w-32">Age:</label>
+            <input type="number" id="age" v-model="editedUser.age" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="gender" class="font-semibold w-32">Gender:</label>
+            <select id="gender" v-model="editedUser.gender"class="ring-2 ring-gray-300 rounded-sm p-1 w-72">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="email" class="font-semibold w-32">Email:</label>
+            <input type="email" id="email" v-model="editedUser.email" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="phone" class="font-semibold w-32">Phone:</label>
+            <input type="text" id="phone" v-model="editedUser.phone" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="username" class="font-semibold w-32">Username:</label>
+            <input type="text" id="username" v-model="editedUser.username" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="password" class="font-semibold w-32">Password:</label>
+            <input type="password" id="password" v-model="editedUser.password" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="birthDate" class="font-semibold w-32">Date of Birth:</label>
+            <input type="date" id="birthDate" v-model="editedUser.birthDate" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="image" class="font-semibold w-32">Image URL:</label>
+            <input type="text" id="image" v-model="editedUser.image" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="bloodGroup" class="font-semibold w-32">Blood Group:</label>
+            <input type="text" id="bloodGroup" v-model="editedUser.bloodGroup" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="height" class="font-semibold w-32">Height:</label>
+            <input type="number" id="height" v-model="editedUser.height" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="weight" class="font-semibold w-32">Weight:</label>
+            <input type="number" id="weight" v-model="editedUser.weight" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex flex-row justify-between">
+            <label for="eyeColor" class="font-semibold w-32">Eye Color:</label>
+            <input type="text" id="eyeColor" v-model="editedUser.eyeColor" class="ring-2 ring-gray-300 rounded-sm p-1 w-72"/>
+            <br />
+          </div>
+          <div class="flex col-span-2 place-self-end mr-20 space-x-3 mt-5">
+            <button 
+              type="submit"
+              class="bg-green-500 hover:bg-green-600 font-semibold p-3 rounded-md w-auto text-white"
+            >
+              Save Changes
+            </button>
+          </div>
           <!-- Tambahkan field lainnya sesuai kebutuhan -->
-
-          <button type="submit">Save Changes</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
